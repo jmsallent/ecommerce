@@ -1,0 +1,43 @@
+openapi: 3.0.0
+info:
+  title: Products API
+  version: 1.0.0
+  description: API Products
+
+paths:
+ 
+ /get/totalsales:
+    get:
+      summary: Obtener una categoría por ID
+      responses:
+        '200':
+          description: Categoría encontrada
+        '404':
+          description: Categoría no encontrada
+components:
+  schemas:
+    Order:
+      type: object
+      properties:
+        orderItems:
+          type: array
+        shippingAddress1:
+          type: string
+        shippingAddress2:
+          type: string
+        city:
+          type: string
+        zip:
+          type: string
+        country:
+          type: string
+        phone:
+          type: string
+        status:
+          type: string
+        totalPrice:
+          type: number
+        otalPrice:
+          type: string
+      required:
+        - name

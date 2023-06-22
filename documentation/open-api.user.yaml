@@ -1,0 +1,129 @@
+openapi: 3.0.0
+info:
+  title: Products API
+  version: 1.0.0
+  description: API Products
+
+paths:
+  /users:
+    get:
+      summary: Obtener todos los usuarios
+      responses:
+        '200':
+          description: Lista de usuarios
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    post:
+      summary: Crear un nuevo usuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: Usuario creado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /users/{userId}:
+    parameters:
+      - in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        description: ID del usuario
+    get:
+      summary: Obtener un usuario por ID
+      responses:
+        '200':
+          description: Usuario encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: Usuario no encontrado
+    put:
+      summary: Actualizar un usuario por ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Usuario actualizado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: Usuario no encontrado
+    delete:
+      summary: Eliminar un usuario por ID
+      responses:
+        '204':
+          description: Usuario eliminado exitosamente
+        '404':
+          description: Usuario no encontrado
+  /user/login:
+    post:
+      summary: Loguease un nuevo usuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: Usuario logueado exitosamente
+  /user/register:
+    post:
+      summary: Loguease un nuevo usuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: Usuario logueado exitosamente
+          
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id_user:
+          type: string
+        email:
+          type: string
+        passwordHash:
+          type: string
+        phone:
+          type: number
+        isAdmin:
+          type: boolean
+        street:
+          type: string
+        apartment:
+          type: string
+        zip:
+          type: string
+        city:
+          type: string
+        country:
+          type: string
+      required:
+        - name

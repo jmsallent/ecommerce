@@ -1,0 +1,66 @@
+@startuml
+
+hide empty members
+hide empty attributes
+
+package "Database" {
+
+  entity User {
+    +id_user [PK]
+    email
+    passwordHash
+    phone
+    isAdmin
+    street
+    apartment
+    zip
+    city
+    country
+  }
+  entity Product {
+    +id_product [PK]
+    name
+    description
+    richDescription
+    image
+    images
+    brand
+    price
+    #category [FK]
+    countInStock
+    rating
+    numReviews
+    isFeatured
+    dateCreated
+  }
+
+  entity "Category" {
+    +id_category [PK]
+    name
+    icon
+    color
+  }
+
+  entity "Order" {
+    +id_order [PK]
+    orderItems
+    shippingAddress1
+    shippingAddress2
+    city
+    zip
+    country
+    phone
+    status
+    totalPrice
+    #user [FK]
+    dateOrdered
+  }
+
+  entity "OrderItem" {
+    +id_orderItem [PK]
+    quantity
+    #product [FK]
+  }
+}
+
+@enduml
